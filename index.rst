@@ -22,7 +22,7 @@ The following holds information on the vim.
 .. toctree::
    :maxdepth: 2
 
-    vim/index
+   vim/index
 
 
 Indices and tables
