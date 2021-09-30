@@ -26,44 +26,16 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install -U sphinx
-          pip install -U pydata-sphinx-theme
-          pip install -U sphinxcontrib-wavedrom
-          pip install -U sphinxcontrib-plantuml
-          #- pip install -U recommonmark
-          pip install -U sphinxemoji
-          pip install -U sphinx-copybutton
-          #- pip install -U nbsphinx
-          #- pip install -U jupyter_sphinx
-          pip install -U sphinx-panels
-          pip install -U sphinx-prompt
-          pip install -U sphinx-autobuild
-          pip install -U sphinx-notfound-page
-          sudo apt-get update
-          echo "Install build-essential"
-          sudo apt-get install -y build-essential
-          echo "Install git"
-          sudo apt-get install -y git
-          echo "Install graphviz"
-          sudo apt-get install -y graphviz
-          echo "Install Inkscape"
-          sudo apt-get install -y inkscape
-          echo "Install texlive"
-          #- sudo apt-get install -y texlive-full
-          chmod +x source/_static/jar/plantuml.jar
-          echo "Install Java"
-          sudo dpkg --configure -a
-          mkdir -p /usr/share/man/man1
-          sudo apt-get install -y default-jdk
-
-     - name: Build sphinx
-       run: |
-         make html
+          pip install -U Sphinx
+          
+      - name: Build sphinx
+        run: |
+          make html
      
-     - name: Deploy
-       uses: JamesIves/github-pages-deploy-action@releases/v3
-       with:
-         ACCESS_TOKEN: ${{ secrets.GH_TOKEN }}
-         BRANCH: gh-pages
-         FOLDER: _build/html
-         CLEAN: true
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          ACCESS_TOKEN: ${{ secrets.GH_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: _build/html
+          CLEAN: true
