@@ -15,6 +15,15 @@ have fun with a pleasure journey.
    :caption: Contents:
 
 
+Vim documentation
+-----------------
+The following holds information on the vim.
+
+.. toctree::
+   :maxdepth: 2
+
+    vim/index
+
 
 Indices and tables
 ==================
