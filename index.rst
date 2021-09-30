@@ -3,8 +3,12 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Bruce's Notebook's documentation!
+Thoughts on sports, travel, computing, and other interesting things
 ============================================
+This is the top level of the bruce's notebook tree. Bruce 
+documentation, like the notebook itself, is very much a work in progress;
+that is thoughts on sports, travel, computing, and other interesting things; 
+have fun with a pleasure journey.
 
 .. toctree::
    :maxdepth: 2
