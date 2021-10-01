@@ -25,6 +25,16 @@ The following holds information on the vim.
    vim/index
 
 
+Computer Systems: A Programmer's Perspective
+-----------------
+The following holds information on the computer composition and architecture.
+
+.. toctree::
+   :maxdepth: 2
+
+   csapp/index
+
+
 Indices and tables
 ==================
 
