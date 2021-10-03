@@ -9,7 +9,6 @@ Vim Turtor
    :maxdepth: 2
    :numbered:
 
-   play
    vim8
 
    
