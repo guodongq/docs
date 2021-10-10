@@ -9,7 +9,7 @@ Vim Turtor
    :maxdepth: 2
    :numbered:
 
-   vim8
+   vim
 
    
 
