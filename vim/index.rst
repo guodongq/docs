@@ -1,7 +1,7 @@
 .. SPDX-License-Identifier: MIT
 
 =======================
-Vim Turtor
+Vim
 =======================
 
 
