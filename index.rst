@@ -34,6 +34,16 @@ A computer system is a set of integrated devices which takes input, process it a
 
    csapp/index
 
+Data Structures and Algorithms: Algorithms + Data Structures = Programming
+------------------------------------
+A data structure is a named location that can be used to store and organize data. And, an algorithm is a collection of steps to solve a particular problem. Learning data structures and algorithms allow us to write efficient and optimized computer programs.
+
+.. toctree::
+   :maxdepth: 2
+
+   dsa/index 
+
+
 Programming Language: Language is the bridge between human and computer
 ------------------------------------
 A programming language is a formal language comprising a set of strings that produce various kinds of machine code output. Programming languages are one kind of computer language, and are used in computer programming to implement algorithms. Most programming languages consist of instructions for computers.
