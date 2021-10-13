@@ -9,8 +9,9 @@ Language
    :maxdepth: 2
    :numbered:
 
-   c
    assembly
+   c
+   go
 
    
 
