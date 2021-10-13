@@ -27,13 +27,21 @@ The following holds information on the vim.
 
 Computer Systems: A Programmer's Perspective
 -----------------
-The following holds information on the computer composition and architecture.
+A computer system is a set of integrated devices which takes input, process it and give output. Also it store data and information. computer system allows users to input, manipulate and store data. Computer systems include a CPU, monitor, keyboard, mouse and other optional components.
 
 .. toctree::
    :maxdepth: 2
 
    csapp/index
 
+Programming Language: The language of communication between humans and computers
+------------------------------------
+A programming language is a formal language comprising a set of strings that produce various kinds of machine code output. Programming languages are one kind of computer language, and are used in computer programming to implement algorithms. Most programming languages consist of instructions for computers.
+
+.. toctree::
+   :maxdepth: 2
+
+   lang/index
 
 Indices and tables
 ==================
