@@ -17,7 +17,7 @@ have fun with a pleasure journey.
 
 Vim documentation
 -----------------
-The following holds information on the vim.
+Vim is a highly configurable text editor built to make creating and changing any kind of text very efficient.
 
 .. toctree::
    :maxdepth: 2
