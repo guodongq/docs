@@ -7,7 +7,8 @@
 计算机系统漫游
 ---------------
 
-现有如下源代码`helloworld.c`::
+现有如下源代码`helloworld.c`
+.. helloworld::c
 
     #include<stdio.h>
     int main(){
