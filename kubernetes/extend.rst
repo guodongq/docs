@@ -17,12 +17,14 @@ Kubernetes的定制化方法主要分为配置和扩展两种，这里主要讲�
 Kubectl
 ---------------
 
-用户通常使用kubectl与Kubernetes API交互。`Kubectl插件<https://kubernetes.io/zh/docs/tasks/extend-kubectl/kubectl-plugins/>`_能够扩展Kubectl的行为，不过这些插件只会影响到每个用户的本地环境，kubectl插件可以通过``kubectl 插件名 参数``方式运行
+用户通常使用kubectl与Kubernetes API交互。 `Kubectl插件<https://kubernetes.io/zh/docs/tasks/extend-kubectl/kubectl-plugins/>`_ 能够扩展Kubectl的行为，不过这些插件只会影响到每个用户的本地环境
 
 
-Kubectl将会在用户的PATH路径下查找``kubectl-*``为前缀的二进制文件，并且把它当成一个插件.例如tekton的cli命令行工具，可以作为一个kubectl插件`kubectl-tkn <https://github.com/tektoncd/cli#tkn-as-a-kubectl-plugin>`_方式运行
+Kubectl将会在用户的PATH路径下查找 ``kubectl-*`` 为前缀的二进制文件，并且把它当成一个插件.
 
+例如tekton的cli命令行工具，可以作为一个kubectl插件 `kubectl-tkn <https://github.com/tektoncd/cli#tkn-as-a-kubectl-plugin>`_ 方式运行
 
+有一些可用的kubectl plugins可以供我们使用，更多信息请 `参考 <https://krew.sigs.k8s.io/plugins/>`
 
 
 
