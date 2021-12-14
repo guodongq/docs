@@ -27,10 +27,10 @@ Kubectl将会在用户的PATH路径下查找 ``kubectl-*`` 为前缀的二进制
 .. figure:: /_static/images/kubernetes/kubernetes-plugins.jpg
    :width: 100%
    :align: center
-   :alt: Kubernetes plugins
+   :alt: Kubernetes extend
 
 
-有一些可用的kubectl plugins可以供我们使用，更多信息请 `参考 <https://krew.sigs.k8s.io/plugins/>`_
+有一些写好的kubectl plugins可供我们使用，更多信息请 `访问这里 <https://krew.sigs.k8s.io/plugins/>`_
 
 
 ApiServer
