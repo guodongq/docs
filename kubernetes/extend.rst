@@ -26,13 +26,12 @@ Kubectl将会在用户的PATH路径下查找 ``kubectl-*`` 为前缀的二进制
 
 例如tekton的cli命令行工具，可以作为一个kubectl插件 `kubectl-tkn <https://github.com/tektoncd/cli#tkn-as-a-kubectl-plugin>`_ 方式运行
 
-
-.. figure:: /_static/images/kubernetes/kubernetes-plugin.jpg
+.. figure:: /_static/images/kubernetes/kubectl-plugin.jpg
    :width: 100%
    :align: center
    :alt: Kubernetes plugin
 
-    Kubernetes Plugins
+    Kubectl Plugins
 
 
 有一些写好的kubectl plugins可供我们使用，更多信息请 `访问这里 <https://krew.sigs.k8s.io/plugins/>`_
