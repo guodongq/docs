@@ -20,6 +20,9 @@ Kubectl
 用户通常使用kubectl与Kubernetes API交互。`Kubectl插件<https://kubernetes.io/zh/docs/tasks/extend-kubectl/kubectl-plugins/>`能够扩展Kubectl的行为，不过这些插件只会影响到每个用户的本地环境，kubectl插件可以通过``kubectl 插件名 参数``方式运行
 
 
+Kubectl将会在用户的PATH路径下查找``kubectl-*``为前缀的二进制文件，并且把它当成一个插件.例如tekton的cli命令行工具，可以作为一个kubectl插件`kubectl-tkn <https://github.com/tektoncd/cli#tkn-as-a-kubectl-plugin>`方式运行
+
+
 
 ApiServer
 ---------------
