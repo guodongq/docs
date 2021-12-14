@@ -17,6 +17,10 @@ Kubernetes的定制化方法主要分为配置和扩展两种，这里主要讲�
 Kubectl
 ---------------
 
+用户通常使用kubectl与Kubernetes API交互。`Kubectl插件<https://kubernetes.io/zh/docs/tasks/extend-kubectl/kubectl-plugins/>`能够扩展Kubectl的行为，不过这些插件只会影响到每个用户的本地环境，kubectl插件可以通过``kubectl 插件名 参数``方式运行
+
+
+
 ApiServer
 ---------------
 
