@@ -13,6 +13,8 @@ Kubernetes的定制化方法主要分为配置和扩展两种，这里主要讲�
    :align: center
    :alt: Kubernetes extend
 
+    Kubernetes Extend
+
 
 Kubectl
 ---------------
@@ -28,7 +30,9 @@ Kubectl将会在用户的PATH路径下查找 ``kubectl-*`` 为前缀的二进制
 .. figure:: /_static/images/kubernetes/kubernetes-plugin.jpg
    :width: 100%
    :align: center
-   :alt: Kubernetes extend
+   :alt: Kubernetes plugin
+
+    Kubernetes Plugins
 
 
 有一些写好的kubectl plugins可供我们使用，更多信息请 `访问这里 <https://krew.sigs.k8s.io/plugins/>`_
