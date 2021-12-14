@@ -23,6 +23,17 @@ Vim is a highly configurable text editor built to make creating and changing any
    :maxdepth: 2
 
    vim/index
+   
+ 
+Kubernetes
+-----------------
+Kubernetes, also known as K8s, is an open-source system for automating deployment, scaling, and management of containerized applications.
+
+.. toctree::
+   :maxdepth: 2
+
+   kubernetes/index
+
 
 
 Indices and tables
