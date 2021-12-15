@@ -115,6 +115,19 @@ CR常常会和controller一起配合使用
 控制器
 ---------------
 
+Kubernetes中资源的状态的维护都是Controller来实现的，controller会不断尝试将一个资源调整为我们描述的状态，即常说的声明式api
+
+声明式API背后具体的活都是controller干的，controller一般会配合着CRD一起使用
+
+.. figure:: /_static/images/kubernetes/controller-manager.jpg
+   :width: 100%
+   :align: center
+   :alt: Kubernetes controller manager
+
+   Kubernetes Controller
+
+
+
 调度器
 ---------------
 
