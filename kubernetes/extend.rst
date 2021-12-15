@@ -58,7 +58,6 @@ APIServer处理所有的请求，当请求到达APIServer时，需要经过认�
 .. seealso::
 
    `Kubernetes API访问扩展 <https://kubernetes.io/zh/docs/concepts/security/controlling-access/>`_
-
    `深入理解k8s中的访问控制 <https://www.cnblogs.com/yangyuliufeng/p/13548915.html>`_
 
 Aggregation Layer
@@ -91,9 +90,7 @@ Aggregation Layer
 .. seealso::
 
    `Kubernetes API Aggregator是什么 <https://blog.51cto.com/wzlinux/2474075>`_
-
    `Kubernetes扩展apiserver实现分析 <https://qingwave.github.io/kube-apiserver-aggretation-api/>`_
-
    `Kube-Aggregator <https://github.com/kubernetes/kube-aggregator>`_
 
 
