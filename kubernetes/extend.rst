@@ -100,7 +100,7 @@ Aggregation Layer
 资源
 ---------------
 
-我们常用的`Deployment`,`Pod`,`Node`等都是K8s官方提供的内置资源，但是有时候内置资源无法满足我们的需求时，就可以使用CustomResource，即自定义资源
+我们常用的 ``Deployment``, ``Pod``, ``Node`` 等都是K8s官方提供的内置资源，但是有时候内置资源无法满足我们的需求时，就可以使用CustomResource，即自定义资源
 
 CR常常会和controller一起配合使用
 
