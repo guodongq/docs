@@ -131,6 +131,20 @@ Kubernetes中资源的状态的维护都是Controller来实现的，controller�
 调度器
 ---------------
 
+Kubernetes调度器负责决定Pod要放置到哪些节点上执行
+
+调度器是一种特殊的控制器，负责监视Pod变化并将Pod分派给节点。默认的调度器可以被整体替换掉或者是使用多个调度器
+
+除此之外，官方默认的调度器也支持WebHook
+
+
+.. seealso:: 
+
+   `调度器扩展 <https://kubernetes.io/zh/docs/concepts/extend-kubernetes/#scheduler-extensions>`_ 
+
+   `Kubernetes Scheduler <https://github.com/kubernetes/kubernetes/tree/master/pkg/scheduler>`_
+
+
 网络插件CNI
 ---------------
 
