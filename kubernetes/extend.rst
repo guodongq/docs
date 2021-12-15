@@ -100,6 +100,18 @@ Aggregation Layer
 资源
 ---------------
 
+我们常用的`Deployment`,`Pod`,`Node`等都是K8s官方提供的内置资源，但是有时候内置资源无法满足我们的需求时，就可以使用CustomResource，即自定义资源
+
+CR常常会和controller一起配合使用
+
+
+.. figure:: /_static/images/kubernetes/k8s-resources.jpg
+   :width: 100%
+   :align: center
+   :alt: Kubernetes resources
+
+   Kubernetes Resources
+
 控制器
 ---------------
 
