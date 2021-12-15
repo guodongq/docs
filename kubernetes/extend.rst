@@ -67,6 +67,33 @@ Aggregation Layer
 从K8s 1.7版本之后，APIServer引入了聚合层的功能，API Aggregation允许在不修改Kubernetes核心代码的同时扩展Kubernetes API，即将第三方服务注册到Kubernetes API中，这样就可以通过Kubernetes API来访问外部服务
 
 
+例如：将如下的资源提交给K8s以后，当用户在访问ApiServer的/apis/metrics.kubernetes.io/v1beta1路径时，会被转发到集群中的metrics-server.kube-system.svc服务上
+
+::
+    apiVersion: apiregistration.Kubernetes.io/v1
+    kind: APIService
+    metadata:
+    name: v1beta1.metrics.Kubernetes.io
+    spec:
+    service:
+        name: metrics-server
+        namespace: kube-system
+    group: metrics.Kubernetes.io
+    version: v1beta1
+    insecureSkipTLSVerify: true
+    groupPriorityMinimum: 100
+    versionPriority: 100
+
+
+
+Reference:
+
+* `Kubernetes API Aggregator是什么 <https://blog.51cto.com/wzlinux/2474075>`_
+
+* `Kubernetes扩展apiserver实现分析 <https://qingwave.github.io/kube-apiserver-aggretation-api/>`_
+
+* `Kube-Aggregator <https://github.com/kubernetes/kube-aggregator>`_
+
 
 资源
 ---------------
