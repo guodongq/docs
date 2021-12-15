@@ -55,9 +55,11 @@ APIServer处理所有的请求，当请求到达APIServer时，需要经过认�
 用的最多的是准入控制的扩展，准入控制会先经过变更准入控制MutatingAdmissionWebhook，然后再经过验证准入控制ValidatingAdmissionWebhook,任何一个准入控制器返回了错误这个请求都会失败，在这两个准入控制器中可以做很多事情，例如注入sidecar，验证资源，调整pod的配额等等
 
 
-:Reference:
-- `Kubernetes API访问扩展 <https://kubernetes.io/zh/docs/concepts/security/controlling-access/>`_
-- `深入理解k8s中的访问控制 <https://www.cnblogs.com/yangyuliufeng/p/13548915.html>`_
+.. seealso::
+
+   `Kubernetes API访问扩展 <https://kubernetes.io/zh/docs/concepts/security/controlling-access/>`_
+
+   `深入理解k8s中的访问控制 <https://www.cnblogs.com/yangyuliufeng/p/13548915.html>`_
 
 Aggregation Layer
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -86,10 +88,13 @@ Aggregation Layer
 
 
 
-:Reference:
-- `Kubernetes API Aggregator是什么 <https://blog.51cto.com/wzlinux/2474075>`_
-- `Kubernetes扩展apiserver实现分析 <https://qingwave.github.io/kube-apiserver-aggretation-api/>`_
-- `Kube-Aggregator <https://github.com/kubernetes/kube-aggregator>`_
+.. seealso::
+
+   `Kubernetes API Aggregator是什么 <https://blog.51cto.com/wzlinux/2474075>`_
+
+   `Kubernetes扩展apiserver实现分析 <https://qingwave.github.io/kube-apiserver-aggretation-api/>`_
+
+   `Kube-Aggregator <https://github.com/kubernetes/kube-aggregator>`_
 
 
 资源
