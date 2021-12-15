@@ -69,7 +69,9 @@ Aggregation Layer
 
 例如：将如下的资源提交给K8s以后，当用户在访问ApiServer的/apis/metrics.kubernetes.io/v1beta1路径时，会被转发到集群中的metrics-server.kube-system.svc服务上
 
-::
+.. code-block:: yaml
+    :linenos:
+
     apiVersion: apiregistration.Kubernetes.io/v1
     kind: APIService
     metadata:
