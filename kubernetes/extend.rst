@@ -189,6 +189,8 @@ CNI仅关心容器创建时的网络分配，和当容器被删除时释放网�
 
    `csi-spec <https://github.com/container-storage-interface/spec/blob/master/spec.md>`_
 
+   `使用CSI和Kubernetes实现卷的动态扩容 <https://kubernetes.io/zh/blog/2018/08/02/%E4%BD%BF%E7%94%A8-csi-%E5%92%8C-kubernetes-%E5%AE%9E%E7%8E%B0%E5%8D%B7%E7%9A%84%E5%8A%A8%E6%80%81%E6%89%A9%E5%AE%B9/>`_
+
 容器运行时CRI
 ---------------
 
