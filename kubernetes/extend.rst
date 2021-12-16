@@ -148,8 +148,46 @@ Kubernetes调度器负责决定Pod要放置到哪些节点上执行
 网络插件CNI
 ---------------
 
+CNI网络插件，全称Container Network Interface(容器网络接口)，由一组用于配置Linux容器的网络接口的规范和库组成，同时还包含一些插件
+
+CNI仅关心容器创建时的网络分配，和当容器被删除时释放网络资源
+
+.. seealso::
+
+   `CNI容器网络接口 <https://jimmysong.io/kubernetes-handbook/concepts/cni.html>`_
+
+   `Container Network Interface <https://github.com/containernetworking/cni>`_
+
+
 存储插件CSI
 ---------------
+
+全称是Container Storage Interface，可以通过CSI接口支持不同的存储类型
+
+
+推荐一个动态自动创建本地目录作为持久化目录的provisioner `rancher/local-path-provisioner <https://github.com/rancher/local-path-provisioner>`_
+
+.. figure:: /_static/images/kubernetes/kube-csi.jpg
+   :width: 100%
+   :align: center
+   :alt: Kubernetes CSI
+
+   Kubernetes CSI
+
+
+.. seealso:: 
+
+   `搞定持久化存储 <https://www.infoq.cn/article/pdsrqaer3mkovsmgoovs>`_
+
+   `PV/PVC/StorageClass/Provisioner <https://mp.weixin.qq.com/s?__biz=MzIyMTUwMDMyOQ==&mid=2247489580&idx=1&sn=8d6f118e3bd4cd726a61cd017a2c984e&chksm=e83a9eeadf4d17fcafd7c50b7444a9140a8b710707739fd1bd35fa498366c18c5b39642fac40&scene=21#wechat_redirect>`_
+
+   `rancher provisioner <https://izsk.me/2020/07/24/Kubernetes-Rancher-local-path-provisioner/>`_
+
+   `容器存储接口 <https://jimmysong.io/kubernetes-handbook/concepts/csi.html>`_
+
+   `CSI插件编写指南 <https://time.geekbang.org/column/article/64392>`_
+
+   `csi-spec https://github.com/container-storage-interface/spec/blob/master/spec.md`_
 
 容器运行时CRI
 ---------------
