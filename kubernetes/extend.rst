@@ -193,3 +193,13 @@ CNI仅关心容器创建时的网络分配，和当容器被删除时释放网�
 ---------------
 
 
+全称Container Runtime Interface,是一组用于管理容器运行时和镜像的gRPC接口，利用这个接口可以支持docker，containerd等不同的容器运行时
+
+.. seealso::
+
+   `Container Runtime Interface <https://jimmysong.io/kubernetes-handbook/concepts/cri.html>`_
+
+   `CRI <https://feisky.gitbooks.io/kubernetes/content/plugins/CRI.html>`_
+
+
+
