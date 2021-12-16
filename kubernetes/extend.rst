@@ -187,7 +187,7 @@ CNI仅关心容器创建时的网络分配，和当容器被删除时释放网�
 
    `CSI插件编写指南 <https://time.geekbang.org/column/article/64392>`_
 
-   `csi-spec https://github.com/container-storage-interface/spec/blob/master/spec.md`_
+   `csi-spec <https://github.com/container-storage-interface/spec/blob/master/spec.md>`_
 
 容器运行时CRI
 ---------------
