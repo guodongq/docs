@@ -260,8 +260,14 @@ Operator SDK Getting Started
 .. code-block:: golang
    :linenos:
 
-   
+    // Pipeline is the Schema for the pipelines API
+    type Pipeline struct {
+	metav1.TypeMeta   `json:",inline"`
+	metav1.ObjectMeta `json:"metadata,omitempty"`
 
+	Spec   PipelineSpec   `json:"spec,omitempty"`
+	Status PipelineStatus `json:"status,omitempty"`
+    }
 
 定义CRD
 ~~~~~~~~~~~~~~~~
