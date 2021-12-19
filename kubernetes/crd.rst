@@ -27,22 +27,22 @@ K8s集群在部署时包含了Controllers组件，里面对于每个build-in的�
     apiVersion: apps/v1 
     kind: Deployment 
     metadata: 
-        name: test 
+      name: test 
     spec: 
-        selector:
-            matchLabels:
-                app: test
-        replicas: 2
-        template:
-            metadata:
-            labels:
-                app: test
-            spec:
-            containers:
-            - name: nginx
-                image: nginx:1.7.9
-                ports:
-                - containerPort: 80
+      selector:
+        matchLabels:
+          app: test
+      replicas: 2
+      template:
+        metadata:
+          labels:
+            app: test
+        spec:
+          containers:
+          - name: nginx
+            image: nginx:1.7.9
+            ports:
+            - containerPort: 80
 
 
 GVKs&&GVRs
