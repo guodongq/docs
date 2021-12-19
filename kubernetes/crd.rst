@@ -5,7 +5,7 @@
 =====================================
 
 声明式编程
-~~~~~~~~~~
+------------------
 
 - 命令式编程：详细的命令机器怎么(How)去处理一件事情以达到你想要的结果(What)  
 - 声明式编程：只告诉你想要的结果(What)，机器自己摸索过程(How)  
@@ -15,7 +15,7 @@
 用户只需要关心应用程序的最终状态，其他的都是通过K8s来帮助我们完成，通过这种声明式的方式可以大大简化应用的配置管理复杂度
 
 GVK&&GVR
-~~~~~~~~~~
+------------------
 
 在Kubernetes中想要完成一个CRD，需要指定 ``group/version`` 和 ``kind``, 在kuberntes的API Server中简称为GVK，GVK是定位一种类型的方式，例如daemonsets就是Kubernetes的一种资源，当我们想要通过Kubernetes创建一个daemonsets的时候，需要定义daemonsets的描述文件
 
@@ -49,7 +49,7 @@ Kubernetes组织资源的方式是以REST的URI形式的，而组织的路径就
 Kind其实就是一个类，用于描述对象的，而Resource就是具体的Kind，可以理解成类已经实例化成对象了
 
 控制器模式
-~~~~~~~~~~
+------------------
 
 kubernetes作为一个“容器编排”平台，其核心的功能是编排，Pod作为K8s调度的最小单位，具备很多属性和字段，k8s编排正是通过一个个控制器根据被控制对象的属性和字段来实现。
 
@@ -99,16 +99,47 @@ K8s集群在部署时包含了Controllers组件，里面对于每个build-in的�
 
 
 开发脚手架
-~~~~~~~~~~
+------------------
+
 * `code-generator <https://github.com/kubernetes/code-generator>`_
 * `kubebuilder <https://github.com/kubernetes-sigs/kubebuilder>`_
 * `operator-sdk <https://github.com/operator-framework/operator-sdk>`_
 
+`code-generator` 实际上并不能称之为crd开发的脚手架，它只是能生成一些代码，如果用code-generator进行crd的开发需要我们编写很多逻辑控制代码
+
+`kubebuilder` 和 `operator-sdk` 都是为了方便创建和管理operator而生的脚手架项目, `operator-sdk` 在底层使用了 `kubebuilder`,两者在创建operator项目时都是调用 `controller-runtime` 接口，具有相同的项目布局。
+
+除此之外 `operator-sdk` 还增加了一些特性，具体可以 `参考 <https://sdk.operatorframework.io/docs/faqs/>`_
+
+* `Operator Lifecycle Manager <https://github.com/operator-framework/operator-lifecycle-manager>`_ 安装和管理operator的系统  
+* `OperatorHub <https://operatorhub.io/>`_ 发布operator的社区中心  
+* `Operator SDK Scorecard <https://sdk.operatorframework.io/docs/testing-operators/scorecard/>`_ 一个有用工具，用于确保operator具有最佳实践和开发过程中集群测试  
+* 除了支持golang以外，还支持Ansible和Helm
+
+总结:  
+* 两者不是竞争关系, `operator-sdk` 相当于是 `kubebuilder+`  
+* `operator-sdk` 的文档质量高，感觉 `operator-sdk` 更像是商业版本的kubebuilder,实际上它们都是开源的 
+
 Operator SDK Getting Started
-~~~~~~~~~~~~~~~~~
+------------------
+
+创建脚手架工程
+~~~~~~~~~~~~~~~~
+ 
+创建API
+~~~~~~~~~~~~~~~~
+
+定义CRD
+~~~~~~~~~~~~~~~~
+
+编写Controller逻辑
+~~~~~~~~~~~~~~~~~~~~
+
+测试发布
+~~~~~~~~~~~~~~~~~~~~
 
 总结
-~~~~~~
+------------------
 
 Local Debug
-~~~~~~~~~~~~~~~~
+------------------
