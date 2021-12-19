@@ -278,11 +278,29 @@ Operator SDK Getting Started
 定义CRD
 ~~~~~~~~~~~~~~~~
 
+在operator-sdk生成的项目结构中的 ``pipeline_types.go`` 文件中定义Spec和Status
+
 编写Controller逻辑
 ~~~~~~~~~~~~~~~~~~~~
+ 
+在operator-sdk生成的项目结构中的 ``pipeline_controller.go`` 文件中实现Reconcile的逻辑
 
 测试发布
 ~~~~~~~~~~~~~~~~~~~~
+
+本地调试以后，可以使用Makefile构建镜像，部署我们的CRDs和Controller即可
+
+* make docker-build IMG=imbruce/mario:v1.0.23
+* make docker-push IMG=imbruce/mario:v1.0.23  
+* make deploy IMG=imbruce/mario:v1.0.23
+
+Local Debug
+------------------
+
+由于
+
+
+
 
 总结
 ------------------
@@ -299,7 +317,7 @@ operator-sdk编写crd的流程
 
 如何自定义显示列?
 ~~~~~~~~~~~~~~~~~~
-从1.11以后, `kubectl get` 可以增加显示的列,通过标记 `+kubebuilder:printcolumn` 进行添加
+从1.11以后, ``kubectl get`` 可以增加显示的列,通过标记 ``+kubebuilder:printcolumn`` 进行添加
 
 如何通过rbac添加权限？
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -318,5 +336,3 @@ Reconcile方法什么时候被调度?
 
 
 
-Local Debug
-------------------
