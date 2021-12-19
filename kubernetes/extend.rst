@@ -202,6 +202,3 @@ CNI仅关心容器创建时的网络分配，和当容器被删除时释放网�
    `Container Runtime Interface <https://jimmysong.io/kubernetes-handbook/concepts/cri.html>`_
 
    `CRI <https://feisky.gitbooks.io/kubernetes/content/plugins/CRI.html>`_
-
-
-
