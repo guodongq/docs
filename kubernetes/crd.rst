@@ -269,6 +269,12 @@ Operator SDK Getting Started
 	Status PipelineStatus `json:"status,omitempty"`
     }
 
+* metav1.TypeMeta: 保存资源的Group、Version、Kind  
+* metav1.ObjectMeta: 保存资源对象的名称和namespace  
+* Spec: 期望状态  
+* Status: 实际状态  
+* 还有一个数据结构就是Pipeline对应的列表PipelineList,就是单个资源对象的集合
+
 定义CRD
 ~~~~~~~~~~~~~~~~
 
