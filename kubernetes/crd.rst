@@ -17,6 +17,34 @@
 控制器模式
 ~~~~~~~~~~
 
+kubernetes作为一个“容器编排”平台，其核心的功能是编排，Pod作为K8s调度的最小单位，具备很多属性和字段，k8s编排正是通过一个个控制器根据被控制对象的属性和字段来实现。
+
+K8s集群在部署时包含了Controllers组件，里面对于每个build-in的资源类型（比如Deployment、Statefulset、Cronjob…）都有对应的Controller，基本是1:1的关系
+
+.. code-block:: yaml
+    :linenos:
+
+    apiVersion: apps/v1 
+    kind: Deployment 
+    metadata: 
+        name: test 
+    spec: 
+        selector:
+            matchLabels:
+                app: test
+        replicas: 2
+        template:
+            metadata:
+            labels:
+                app: test
+            spec:
+            containers:
+            - name: nginx
+                image: nginx:1.7.9
+                ports:
+                - containerPort: 80
+
+
 GVKs&&GVRs
 ~~~~~~~~~~
 
