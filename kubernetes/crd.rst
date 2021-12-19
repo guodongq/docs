@@ -78,9 +78,7 @@ K8s集群在部署时包含了Controllers组件，里面对于每个build-in的�
             ports:
             - containerPort: 80
 
-如上，Deployment资源创建以后，对应的Deployment Controller确保当前的deployment资源的Pod个数永远为2，Pod由Template部分组成
-
-具体来说K8s里面的kube-controller-manager这个组件在做这件事情，在 ``kubernetes/pkg/controller`` 目录下包含了所有的控制器，它们都以独有的方式负责某种编排功能，但是它们都遵循一个通用的编排模式，即：调谐循环(Reconcile loop),伪代码逻辑如下:
+如上，Deployment资源创建以后，对应的Deployment Controller确保当前的deployment资源的Pod个数永远为2，Pod由Template部分组成,具体来说K8s里面的kube-controller-manager这个组件在做这件事情，在 ``kubernetes/pkg/controller`` 目录下包含了所有的控制器，它们都以独有的方式负责某种编排功能，但是它们都遵循一个通用的编排模式，即：调谐循环(Reconcile loop),伪代码逻辑如下:
 
 .. code-block:: golang
    :linenos:
@@ -102,12 +100,15 @@ K8s集群在部署时包含了Controllers组件，里面对于每个build-in的�
 
 开发脚手架
 ~~~~~~~~~~
-* code-generator
-* kubebuilder
-* operator-sdk
+* `code-generator <https://github.com/kubernetes/code-generator>`_
+* `kubebuilder <https://github.com/kubernetes-sigs/kubebuilder>`_
+* `operator-sdk <https://github.com/operator-framework/operator-sdk>`_
 
-Getting Started
+Operator SDK Getting Started
 ~~~~~~~~~~~~~~~~~
+
+总结
+~~~~~~
 
 Local Debug
 ~~~~~~~~~~~~~~~~
