@@ -105,7 +105,7 @@ K8s集群在部署时包含了Controllers组件，里面对于每个build-in的�
 * `kubebuilder <https://github.com/kubernetes-sigs/kubebuilder>`_
 * `operator-sdk <https://github.com/operator-framework/operator-sdk>`_
 
-`code-generator` 实际上并不能称之为crd开发的脚手架，它只是能生成一些代码，如果用code-generator进行crd的开发需要我们编写很多逻辑控制代码
+`code-generator` 实际上并不能称之为crd开发的脚手架，它只是能生成一些代码，如果用code-generator进行crd的开发需要手工编写很多代码
 
 `kubebuilder` 和 `operator-sdk` 都是为了方便创建和管理operator而生的脚手架项目, `operator-sdk` 在底层使用了 `kubebuilder`,两者在创建operator项目时都是调用 `controller-runtime` 接口，具有相同的项目布局。
 
@@ -117,11 +117,95 @@ K8s集群在部署时包含了Controllers组件，里面对于每个build-in的�
 Operator SDK Getting Started
 ------------------
 
+安装依赖
+~~~~~~~~
+
+在开发CRD之前，需要安装一些工具，具体的可以 `参考 <https://sdk.operatorframework.io/docs/building-operators/golang/installation/#additional-prerequisites>`_  
+
+* operator-sdk  
+* git  
+* go  
+* docker  
+* kubectl  
+
 创建脚手架工程
 ~~~~~~~~~~~~~~~~
+
+.. code-block:: 
+   :linenos:
+
+   ❯ mkdir mario
+   ❯ cd mario
+   ❯ pwd
+   /Users/qianguodong/Projects/src/github.com/guodongq/mario
+
+   ❯ operator-sdk init --domain qgd.io --repo github.com/guodongq/mario
+
+    Writing kustomize manifests for you to edit...
+    Writing scaffold for you to edit...
+    Get controller runtime:
+    $ go get sigs.k8s.io/controller-runtime@v0.10.0
+    Update dependencies:
+    $ go mod tidy
+    Next: define a resource with:
+    $ operator-sdk create api
+
+    ❯ tree -L 2
+    .
+    ├── Dockerfile
+    ├── Makefile
+    ├── PROJECT
+    ├── config
+    │   ├── default
+    │   ├── manager
+    │   ├── manifests
+    │   ├── prometheus
+    │   ├── rbac
+    │   └── scorecard
+    ├── go.mod
+    ├── go.sum
+    ├── hack
+    │   └── boilerplate.go.txt
+    └── main.go
+
+    8 directories, 7 files
+
+
+执行上面的命令后会生成基本的目录结构，对其中的每个目录解释如下
+
+* Dockerfile 用于构建Docker镜像  
+* Makefile  编译、构建、部署operator都会用到该文件  
+* PROJECT 工程的元数据，在生成各种API的时候会用到这里面的信息
+* config/default 基于kustomize制作的配置文件，为controller提供标准配置，也可以根据需要去修改调整  
+* config/manager 和controller有关的细节配置，例如镜像的资源限制  
+* config/manifests 基于kustomize方式管理operator生成的所有manifest
+* config/rbac operator在kubernetes中的操作权限，通过rbac做精细的权限配置  
+* config/scorecard 工具用来验证operator打包并运行测试  
+* go.mod go语言依赖  
+* hack/boilerplate.go.txt 生成的文件头部添加的license  
+* main.go 主函数
+
  
 创建API
 ~~~~~~~~~~~~~~~~
+
+
+项目中自动增加了很多内容，如下图所示
+
+.. figure:: /_static/images/kubernetes/crd-api.jpg
+   :width: 100%
+   :align: center
+   :alt: Kubernetes crd api
+
+   Kubernetes CRD API
+
+* 新增加的内容中，最核心的是CRD了，也就是上图中Pipeline数据结构所在的 `pipeline_types.go`, 这个最重要的数据结构如下
+
+.. code-block:: golang
+   :linenos:
+
+   
+
 
 定义CRD
 ~~~~~~~~~~~~~~~~
@@ -134,6 +218,34 @@ Operator SDK Getting Started
 
 总结
 ------------------
+
+operator-sdk编写crd的流程
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* 使用operator-sdk创建一个新的Operator项目  
+* 添加自定义资源(CRD)定义新的资源API  
+* 丰富完善CRD的结构定义
+* 定义Operator的调谐(reconcile)逻辑  
+* 使用Operator SDK构建并生成Operator部署清单文件  
+* 部署CRD到Kubernetes Cluster中
+
+如何自定义显示列?
+~~~~~~~~~~~~~~~~~~
+
+如何通过rbac添加权限？
+~~~~~~~~~~~~~~~~~~~~~~
+
+如何对字段添加默认值以及校验?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Reconcile方法什么时候被调度?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+当删除CR资源时，被CR管理的其他资源怎样同时被删除?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
 
 Local Debug
 ------------------
