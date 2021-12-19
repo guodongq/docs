@@ -296,8 +296,7 @@ Operator SDK Getting Started
 
 Local Debug
 ------------------
-
-由于
+Kubernetes
 
 
 
@@ -322,14 +321,29 @@ operator-sdk编写crd的流程
 如何通过rbac添加权限？
 ~~~~~~~~~~~~~~~~~~~~~~
 
-如何对字段添加默认值以及校验?
+如下图Reconcile方法前面有一些  ``+kubebuilder:rbac`` 的前缀，这些是用来确保controller在运行时有相应的资源操作权限
+
+.. figure:: /_static/images/kubernetes/rbac.jpg
+   :width: 100%
+   :align: center
+   :alt: Kubernetes rbac
+
+   Kubernetes RBAC
+
+
+如何对字段添加校验?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+使用注解 ``+kubebuilder:validation:***`` 对需要的字段添加校验规则,具体可以 `参考 <https://book.kubebuilder.io/reference/markers/crd-validation.html>`_
 
 
 
 Reconcile方法什么时候被调度?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+
+Reconcile方法什么时候被再次调度?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 当删除CR资源时，被CR管理的其他资源怎样同时被删除?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
