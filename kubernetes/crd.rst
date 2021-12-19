@@ -296,10 +296,16 @@ Operator SDK Getting Started
 
 Local Debug
 ------------------
-Kubernetes
 
+CRD controller是通过API Server来观察ETCD中CR资源的变化产生的事件，从而进行Reconcile调谐逻辑，实际上我们可以在本地进行crd controller的调试
 
+当需要在本地进行调试时，需要做如下步骤
 
+* export KUBECONFIG=***  指定使用的k8s的kubeconfig文件  
+* make install  将CRD定义安装到Kubernetes Cluster之中
+* 本地启动crd controller即可
+
+这样当ETCD中资源变化时，会产生相应的事情，从而触发crd controller的Reconcile的逻辑
 
 总结
 ------------------
@@ -341,12 +347,26 @@ operator-sdk编写crd的流程
 Reconcile方法什么时候被调度?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+- For: 当监控的资源发生变化时  
+- Owns: 当从属的资源发生变化时
+
 
 Reconcile方法什么时候被再次调度?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+通过查看Reconcile的源码，发现当如下条件发生时，reconcile方法会被再次调度起来  
+
+* 返回错误： return reconcile.Result{}, err  
+* 没有error，显示指定放到队列中: return reconcile.Result{Requeue: true}, nil  
+* 没有error，显示指定下一次触发的时间，一般用在cronjob中： return reconcile.Result{RequeueAfter: time.Second}, nil  
+
+PS: 如果想要终止Reconcile逻辑，请返回 return reconcile.Result{}, nil
+
+
 当删除CR资源时，被CR管理的其他资源怎样同时被删除?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+当我们创建一种资源的时候，顺带着会创建一些其他的资源，例如 eployment会创建Replicaset，replicaset会创建Pod  
+当我们删除某种资源时，其他顺带创建的资源也一并删除，使用OwnReference进行垃圾清理
 
 
