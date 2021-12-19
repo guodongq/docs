@@ -117,7 +117,9 @@ K8s集群在部署时包含了Controllers组件，里面对于每个build-in的�
 * 除了支持golang以外，还支持Ansible和Helm
 
 总结:  
+
 * 两者不是竞争关系, `operator-sdk` 相当于是 `kubebuilder+`  
+
 * `operator-sdk` 的文档质量高，感觉 `operator-sdk` 更像是商业版本的kubebuilder,实际上它们都是开源的 
 
 Operator SDK Getting Started
