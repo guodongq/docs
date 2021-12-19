@@ -18,6 +18,7 @@ GVKs&&GVRs
 ~~~~~~~~~~
 
 在Kubernetes中想要完成一个CRD，需要指定 ``group/version`` 和 ``kind``, 在kuberntes的API Server中简称为GVK，GVK是定位一种类型的方式，例如daemonsets就是Kubernetes的一种资源，当我们想要通过Kubernetes创建一个daemonsets的时候，需要定义daemonsets的描述文件
+
 .. code-block:: yaml
    :linenos:
 
@@ -37,13 +38,13 @@ Kubernetes组织资源的方式是以REST的URI形式的，而组织的路径就
 
 在API Server中还有第二个概念GVR, 当我们理解了GVK之后，再来理解GVR就容易了，和面向对象编程中的类和对象的概念是一样的
 
-+===============+=========+
++---------------+---------+
 |  Kubernetes   | OOP     |
 +===============+=========+
 |  Kind         | Class   |
-+===============+=========+
++---------------+---------+
 |  Resource     | Object  |
-+===============+=========+
++---------------+---------+
 
 Kind其实就是一个类，用于描述对象的，而Resource就是具体的Kind，可以理解成类已经实例化成对象了
 
