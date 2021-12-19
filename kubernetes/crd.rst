@@ -111,15 +111,7 @@ K8s集群在部署时包含了Controllers组件，里面对于每个build-in的�
 
 除此之外 `operator-sdk` 还增加了一些特性，具体可以 `参考 <https://sdk.operatorframework.io/docs/faqs/>`_
 
-* `Operator Lifecycle Manager <https://github.com/operator-framework/operator-lifecycle-manager>`_ 安装和管理operator的系统  
-* `OperatorHub <https://operatorhub.io/>`_ 发布operator的社区中心  
-* `Operator SDK Scorecard <https://sdk.operatorframework.io/docs/testing-operators/scorecard/>`_ 一个有用工具，用于确保operator具有最佳实践和开发过程中集群测试  
-* 除了支持golang以外，还支持Ansible和Helm
-
-总结:  
-
 * 两者不是竞争关系, `operator-sdk` 相当于是 `kubebuilder+`  
-
 * `operator-sdk` 的文档质量高，感觉 `operator-sdk` 更像是商业版本的kubebuilder,实际上它们都是开源的 
 
 Operator SDK Getting Started
