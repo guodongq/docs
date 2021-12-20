@@ -350,6 +350,13 @@ Reconcile方法什么时候被调度?
 - For: 当监控的资源发生变化时  
 - Owns: 当从属的资源发生变化时
 
+.. figure:: /_static/images/kubernetes/reconcile-scheduler.jpg
+   :width: 100%
+   :align: center
+   :alt: Kubernetes reconcile scheduler
+
+   Kubernetes Reconcile Scheduler
+
 
 Reconcile方法什么时候被再次调度?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -363,10 +370,28 @@ Reconcile方法什么时候被再次调度?
 PS: 如果想要终止Reconcile逻辑，请返回 return reconcile.Result{}, nil
 
 
+.. figure:: /_static/images/kubernetes/reconcile.jpg
+   :width: 100%
+   :align: center
+   :alt: Kubernetes Reconcile
+
+   Kubernetes Reconcile
+
+
+
 当删除CR资源时，被CR管理的其他资源怎样同时被删除?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 当我们创建一种资源的时候，顺带着会创建一些其他的资源，例如 eployment会创建Replicaset，replicaset会创建Pod  
 当我们删除某种资源时，其他顺带创建的资源也一并删除，使用OwnReference进行垃圾清理
+
+.. figure:: /_static/images/kubernetes/ownreference.jpg
+   :width: 100%
+   :align: center
+   :alt: Kubernetes OwnReference
+
+   Kubernetes OwnReference
+
+
 
 
