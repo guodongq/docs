@@ -305,7 +305,7 @@ CRD controller是通过API Server来观察ETCD中CR资源的变化产生的事�
 * make install  将CRD定义安装到Kubernetes Cluster之中
 * 本地启动crd controller即可
 
-这样当ETCD中资源变化时，会产生相应的事情，从而触发crd controller的Reconcile的逻辑
+这样当ETCD中资源变化时，会产生相应的事件，从而触发crd controller的Reconcile的逻辑
 
 总结
 ------------------
@@ -364,8 +364,8 @@ Reconcile方法什么时候被再次调度?
 通过查看Reconcile的源码，发现当如下条件发生时，reconcile方法会被再次调度起来  
 
 * 返回错误： return reconcile.Result{}, err  
-* 没有error，显示指定放到队列中: return reconcile.Result{Requeue: true}, nil  
-* 没有error，显示指定下一次触发的时间，一般用在cronjob中： return reconcile.Result{RequeueAfter: time.Second}, nil  
+* 没有error，显式指定放到队列中: return reconcile.Result{Requeue: true}, nil  
+* 没有error，显式指定下一次触发的时间，一般用在cronjob中： return reconcile.Result{RequeueAfter: time.Second}, nil  
 
 PS: 如果想要终止Reconcile逻辑，请返回 return reconcile.Result{}, nil
 
