@@ -305,7 +305,6 @@ CRD controller是通过API Server来观察ETCD中CR资源的变化产生的事�
 * make install  将CRD定义安装到Kubernetes Cluster之中
 * 本地启动crd controller即可
 
-这样当ETCD中资源变化时，会产生相应的事件，从而触发crd controller的Reconcile的逻辑
 
 总结
 ------------------
