@@ -1,0 +1,44 @@
+# Project information
+site_name: Bruce's Notebook
+site_url: https://guodongq.github.io/docs
+site_description: Throughs on sports, computing, and other interesting things
+site_author: Bruce Qian
+
+# Repository
+repo_name: guodongq/docs
+repo_url: https://github.com/guodongq/docs/
+edit_uri: ""
+
+# Copyright
+copyright: Copyright &copy; 2020 - 2022 Bruce Qian
+
+# Configuration
+theme:
+    name: readthedocs
+    locale: en
+    #analytics: {gtag: 'G-274394082'}
+    highlightjs: true
+    hljs_languages:
+        - yaml
+        - django
+
+extra_css:
+  - css/extra.css
+
+
+markdown_extensions:
+  - toc:
+      permalink: 
+  - admonition
+  - attr_list
+  - def_list
+
+
+# Page tree
+nav:
+  - Home: index.md
+  - K8S:
+    - Kubernetes扩展: kubernetes/extend.md
+    - 编写Kubernetes CRD扩展Kubernetes API: kubernetes/crd.md
+  - CSAPP:
+    - 深入理解计算机系统: csapp/index.md
