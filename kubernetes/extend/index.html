@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Bruce Qian" /><link rel="canonical" href="https://guodongq.github.io/docs/kubernetes/extend/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Kubernetes扩展 - Bruce's Notebook</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Kubernetes\u6269\u5c55";
+        var mkdocs_page_input_path = "kubernetes/extend.md";
+        var mkdocs_page_url = "/docs/kubernetes/extend/";
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/django.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Bruce's Notebook
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">K8S</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Kubernetes扩展</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#kubectl">Kubectl</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#apiserver">ApiServer</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_1">准入控制</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#aggregation-layer">Aggregation Layer</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_2">资源</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_3">控制器</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_4">调度器</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#cni">网络插件CNI</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#csi">存储插件CSI</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#cri">容器运行时CRI</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../crd/">编写Kubernetes CRD扩展Kubernetes API</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">CSAPP</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../csapp/">深入理解计算机系统</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Bruce's Notebook</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>K8S &raquo;</li><li>Kubernetes扩展</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="kubernetes">Kubernetes扩展<a class="headerlink" href="#kubernetes" title="Permanent link"></a></h1>
+<p>目前Kubernetes已经成为容器编排的事实标准，其本身的功能也是非常丰富并且灵活，但是也不能满足所有人的需求。在遇到Kubernetes提供的能力无法满足我们需求的时候，我们可以利用Kubernetes高度可配置且可扩展的能力进行定制。</p>
+<p>Kubernetes的定制化方法主要分为配置和扩展两种，这里主要讲述Kubernetes扩展，实际上从客户端到底层容器运行时，绝大部分地方Kubernetes都为我们预留了扩展点</p>
+<p><img alt="Kubernetes extend" src="../../assets/images/kubernetes-extend.jpg" /></p>
+<h2 id="kubectl">Kubectl<a class="headerlink" href="#kubectl" title="Permanent link"></a></h2>
+<p>用户通常使用kubectl与Kubernetes API交互。<a href="https://kubernetes.io/zh/docs/tasks/extend-kubectl/kubectl-plugins/">Kubectl插件</a> 能够扩展Kubectl的行为，不过这些插件只会影响到每个用户的本地环境</p>
+<p>Kubectl将会在用户的PATH路径下查找 <code>kubectl-*</code> 为前缀的二进制文件，并且把它当成一个插件.</p>
+<p>例如tekton的cli命令行工具，可以作为一个kubectl插件<a href="https://github.com/tektoncd/cli#tkn-as-a-kubectl-plugin">kubectl-tkn</a> 方式运行</p>
+<p><img alt="Kubectl Plugins" src="../../assets/images/kubectl-plugin.jpg" /></p>
+<p>有一些写好的kubectl plugins可供我们使用，更多信息请访问<a href="https://krew.sigs.k8s.io/plugins/">这里</a></p>
+<h2 id="apiserver">ApiServer<a class="headerlink" href="#apiserver" title="Permanent link"></a></h2>
+<p>APIServer处理所有的请求，当请求到达APIServer时，需要经过认证-&gt;鉴权-&gt;准入控制的步骤，在这些步骤中都存在扩展点</p>
+<p><img alt="Kubernetes ApiServer" src="../../assets/images/kube-apiserver.jpg" /></p>
+<h2 id="_1">准入控制<a class="headerlink" href="#_1" title="Permanent link"></a></h2>
+<p>用的最多的是准入控制的扩展，准入控制会先经过变更准入控制MutatingAdmissionWebhook，然后再经过验证准入控制ValidatingAdmissionWebhook,任何一个准入控制器返回了错误这个请求都会失败，在这两个准入控制器中可以做很多事情，例如注入sidecar，验证资源，调整pod的配额等等</p>
+<ul>
+<li><a href="https://kubernetes.io/zh/docs/concepts/security/controlling-access/">Kubernetes API访问扩展</a></li>
+<li><a href="https://www.cnblogs.com/yangyuliufeng/p/13548915.html">深入理解k8s中的访问控制</a></li>
+</ul>
+<h2 id="aggregation-layer">Aggregation Layer<a class="headerlink" href="#aggregation-layer" title="Permanent link"></a></h2>
+<p>从K8s 1.7版本之后，APIServer引入了聚合层的功能，API Aggregation允许在不修改Kubernetes核心代码的同时扩展Kubernetes API，即将第三方服务注册到Kubernetes API中，这样就可以通过Kubernetes API来访问外部服务</p>
+<p>例如：将如下的资源提交给K8s以后，当用户在访问ApiServer的/apis/metrics.kubernetes.io/v1beta1路径时，会被转发到集群中的metrics-server.kube-system.svc服务上</p>
+<pre><code>apiVersion: apiregistration.Kubernetes.io/v1
+kind: APIService
+metadata:
+name: v1beta1.metrics.Kubernetes.io
+spec:
+service:
+    name: metrics-server
+    namespace: kube-system
+group: metrics.Kubernetes.io
+version: v1beta1
+insecureSkipTLSVerify: true
+groupPriorityMinimum: 100
+versionPriority: 100
+</code></pre>
+<ul>
+<li><a href="https://blog.51cto.com/wzlinux/2474075">Kubernetes API Aggregator是什么</a></li>
+<li><a href="https://qingwave.github.io/kube-apiserver-aggretation-api/">Kubernetes扩展apiserver实现分析</a></li>
+<li><a href="https://github.com/kubernetes/kube-aggregator">Kube-Aggregator</a></li>
+</ul>
+<h2 id="_2">资源<a class="headerlink" href="#_2" title="Permanent link"></a></h2>
+<p>我们常用的 <code>Deployment</code>, <code>Pod</code>, <code>Node</code> 等都是K8s官方提供的内置资源，但是有时候内置资源无法满足我们的需求时，就可以使用CustomResource，即自定义资源</p>
+<p>CR常常会和controller一起配合使用</p>
+<p><img alt="Kubernetes Resources" src="../../assets/images/k8s-resources.jpg" /></p>
+<h2 id="_3">控制器<a class="headerlink" href="#_3" title="Permanent link"></a></h2>
+<p>Kubernetes中资源的状态的维护都是Controller来实现的，controller会不断尝试将一个资源调整为我们描述的状态，即常说的声明式api</p>
+<p>声明式API背后具体的活都是controller干的，controller一般会配合着CRD一起使用</p>
+<p><img alt="Kubernetes Controller" src="../../assets/images/controller-manager.jpg" /></p>
+<h2 id="_4">调度器<a class="headerlink" href="#_4" title="Permanent link"></a></h2>
+<p>Kubernetes调度器负责决定Pod要放置到哪些节点上执行</p>
+<p>调度器是一种特殊的控制器，负责监视Pod变化并将Pod分派给节点。默认的调度器可以被整体替换掉或者是使用多个调度器</p>
+<p>除此之外，官方默认的调度器也支持WebHook</p>
+<ul>
+<li><a href="https://kubernetes.io/zh/docs/concepts/extend-kubernetes/#scheduler-extensions">调度器扩展</a></li>
+<li><a href="https://github.com/kubernetes/kubernetes/tree/master/pkg/scheduler">Kubernetes Scheduler</a></li>
+</ul>
+<h2 id="cni">网络插件CNI<a class="headerlink" href="#cni" title="Permanent link"></a></h2>
+<p>CNI网络插件，全称Container Network Interface(容器网络接口)，由一组用于配置Linux容器的网络接口的规范和库组成，同时还包含一些插件</p>
+<p>CNI仅关心容器创建时的网络分配，和当容器被删除时释放网络资源</p>
+<ul>
+<li><a href="https://jimmysong.io/kubernetes-handbook/concepts/cni.html">CNI容器网络接口</a></li>
+<li><a href="https://github.com/containernetworking/cni">Container Network Interface</a></li>
+</ul>
+<h2 id="csi">存储插件CSI<a class="headerlink" href="#csi" title="Permanent link"></a></h2>
+<p>全称是Container Storage Interface，可以通过CSI接口支持不同的存储类型</p>
+<p>推荐一个动态自动创建本地目录作为持久化目录的provisioner <a href="https://github.com/rancher/local-path-provisioner">rancher/local-path-provisioner</a></p>
+<p><img alt="Kubernetes CSI" src="../../assets/images/kube-csi.jpg" /></p>
+<ul>
+<li><a href="https://www.infoq.cn/article/pdsrqaer3mkovsmgoovs">搞定持久化存储</a></li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzIyMTUwMDMyOQ==&amp;mid=2247489580&amp;idx=1&amp;sn=8d6f118e3bd4cd726a61cd017a2c984e&amp;chksm=e83a9eeadf4d17fcafd7c50b7444a9140a8b710707739fd1bd35fa498366c18c5b39642fac40&amp;scene=21#wechat_redirect">PV/PVC/StorageClass/Provisioner</a></li>
+<li><a href="https://izsk.me/2020/07/24/Kubernetes-Rancher-local-path-provisioner/">rancher provisioner</a></li>
+<li><a href="https://jimmysong.io/kubernetes-handbook/concepts/csi.html">容器存储接口</a></li>
+<li><a href="https://time.geekbang.org/column/article/64392">CSI插件编写指南</a></li>
+<li><a href="https://github.com/container-storage-interface/spec/blob/master/spec.md">csi-spec</a></li>
+<li><a href="https://kubernetes.io/zh/blog/2018/08/02/%E4%BD%BF%E7%94%A8-csi-%E5%92%8C-kubernetes-%E5%AE%9E%E7%8E%B0%E5%8D%B7%E7%9A%84%E5%8A%A8%E6%80%81%E6%89%A9%E5%AE%B9/">使用CSI和Kubernetes实现卷的动态扩容</a></li>
+</ul>
+<h2 id="cri">容器运行时CRI<a class="headerlink" href="#cri" title="Permanent link"></a></h2>
+<p>全称Container Runtime Interface,是一组用于管理容器运行时和镜像的gRPC接口，利用这个接口可以支持docker，containerd等不同的容器运行时</p>
+<ul>
+<li><a href="https://jimmysong.io/kubernetes-handbook/concepts/cri.html">Container Runtime Interface</a></li>
+<li><a href="https://feisky.gitbooks.io/kubernetes/content/plugins/CRI.html">CRI</a></li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../.." class="btn btn-neutral float-left" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../crd/" class="btn btn-neutral float-right" title="编写Kubernetes CRD扩展Kubernetes API">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>Copyright &copy; 2020 - 2022 Bruce Qian</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../.." style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../crd/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
